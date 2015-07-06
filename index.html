@@ -35,7 +35,9 @@
         var request = {};
         request.input = text;
         request.componentRestrictions = { country: country.value };
-        request.types = ['(cities)'];
+        // uncomment the line below if you want only cities to appear
+        // if it is commented the autocomplete supports post codes
+        // request.types = ['(cities)'];
         service.getPlacePredictions(request, callback);
       }
 
@@ -46,8 +48,8 @@
             results.innerHTML = 'No matches. Sorry.'
             return;
           }
-          console.clear();
-          console.log(JSON.stringify(predictions, null, 2));
+          // console.clear();
+          // console.log(JSON.stringify(predictions, null, 2));
           results.innerHTML = predictions.map (function(p) {
             return {
               description: p.description,
