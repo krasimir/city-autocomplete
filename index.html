@@ -42,6 +42,10 @@
       input.addEventListener('keyup', function (e) {
         e && e.preventDefault();
         getSuggestions(input.value, function (predictions) {
+          if (predictions === null || predictions.length === 0) {
+            results.innerHTML = 'No matches. Sorry.'
+            return;
+          }
           console.clear();
           console.log(JSON.stringify(predictions, null, 2));
           results.innerHTML = predictions.map (function(p) {
