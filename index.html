@@ -54,7 +54,7 @@
               place_id: p.place_id
             }
           }).map(function (city) {
-            return '<a href="javascript:getLocation(\'' + city.place_id + '\', this);" id="' + city.place_id + '">' + city.description + '</a>';
+            return '<a href="javascript:getLocation(\'' + city.place_id + '\');" id="' + city.place_id + '">' + city.description + '</a>';
           }).join('<br />');
         })
       });
