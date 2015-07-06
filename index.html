@@ -54,7 +54,7 @@
               place_id: p.place_id
             }
           }).map(function (city) {
-            return '<a href="javascript:getLocation(\'' + city.place_id + '\');">' + city.description + '</a>';
+            return '<a href="javascript:getLocation(\'' + city.place_id + '\', this);" id="' + city.place_id + '">' + city.description + '</a>';
           }).join('<br />');
         })
       });
@@ -63,7 +63,20 @@
     }
 
     function getLocation (place_id) {
-
+      var link = document.querySelector('#' + place_id);
+      var text = link.innerHTML;
+      var setText = function (str) {
+        link.innerHTML = text + ' (' + str + ')';
+      }
+      setText('loading coordinates ...')
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ placeId: place_id}, function(results, status) {
+        if(status === 'OK' && results && results.length > 0) {
+          var text = link.innerHTML;
+          var location = results[0].geometry.location;
+          setText(location.lat() + ', ' + location.lng())
+        }
+      });
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
