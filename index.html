@@ -35,9 +35,7 @@
         var request = {};
         request.input = text;
         request.componentRestrictions = { country: country.value };
-        // uncomment the line below if you want only cities to appear
-        // if it is commented the autocomplete supports post codes
-        // request.types = ['(cities)'];
+        request.types = ['(regions)'];
         service.getPlacePredictions(request, callback);
       }
 
